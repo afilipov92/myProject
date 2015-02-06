@@ -40,3 +40,15 @@ spl_autoload_register(function ($class) {
         require_once($classFileName);
     }
 });
+
+/**
+ * Подргузка классов helpers
+ */
+spl_autoload_register(function ($class) {
+    $classFileName = BASE_PATH . 'helpers' . DIRECTORY_SEPARATOR . $class . '.php';
+
+    if (file_exists($classFileName)) {
+        require_once($classFileName);
+        return true;
+    }
+});

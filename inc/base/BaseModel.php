@@ -2,10 +2,17 @@
 
 class BaseModel {
     private static $db;
+    protected $errors;
 
     private function __construct() {
     }
 
+    /**
+     * возвращает подключение к базе данных, если оно не было установленно
+     * устанавливает его
+     * @return PDO
+     * @throws Exception
+     */
     public static function connect() {
         if (!isset(self::$db)) {
             try {
@@ -17,6 +24,27 @@ class BaseModel {
         return self::$db;
     }
 
+    /**
+     * Устанавливает в модель группу атрибутов из массива
+     * @param array $arr ассоциативный массив имя свойства - значение
+     */
+    public function setAttributes(array $arr) {
+        foreach ($arr as $key => $val) {
+            $this->$key = $val;
+        }
+    }
+
+    /**
+     * возвращает ошибки
+     * @return mixed
+     */
+    public function getErrors() {
+        return $this->errors;
+    }
+
+    /**
+     * закрывает подключение к базе данных
+     */
     public function __destructor() {
         self::$db = null;
     }

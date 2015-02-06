@@ -3,18 +3,14 @@
 class Controller {
 
     protected $view;
+    protected $session;
 
     /**
-     * создает объект View
+     * создает объекты View и SessionModel
      */
     public function __construct() {
         $this->view = new View();
-    }
-    /**
-     * метод по умолчанию
-     */
-    public function indexAction() {
-        echo __METHOD__ . "<br/>";
+        $this->session = new SessionModel();
     }
 
     /**
@@ -25,6 +21,15 @@ class Controller {
      */
     public static function url($controller) {
         $args = func_get_args();
-        return BASE_URL . implode("/", $args);
+        $a = BASE_URL . implode("/", $args);
+        return $a;
+    }
+
+    /**
+     * проверяет была ли отправлена форма
+     * @return bool
+     */
+    public function isPost() {
+        return !empty($_POST);
     }
 }
