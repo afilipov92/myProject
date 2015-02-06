@@ -8,14 +8,14 @@ define('BASE_URL', 'http://' . $_SERVER['SERVER_NAME'] . str_replace('index.php'
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'gai2');
 define('DB_USER', 'root');
-define('DB_PASSWORD', 'Blackpearl99');
+define('DB_PASSWORD', '---');
 
 define('CHAR_SET', 'UTF-8');
 define('SMTP_SEC', 'ssl');
 define('MAIL_HOST', 'smtp.yandex.ru');
 define('MAIL_PORT', 465);
 define('MAIL_USERNAME', 'al.oz2015@yandex.ru');
-define('MAIL_PASSWORD', 'Paradise90');
+define('MAIL_PASSWORD', '---');
 
 define('ID_ADMIN', 1);
 define('ID_MODERATOR', 2);
