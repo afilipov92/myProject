@@ -6,11 +6,8 @@ class UserModel extends BaseModel {
     public $password = "";
     public $passwordConfirm = "";
 
-    public function __construct() {
-    }
-
     /**
-     * проверяет валидность формы регистрации
+     * checks the validity of the registration form
      * @return bool
      */
     public function isFormVaild() {
@@ -19,10 +16,10 @@ class UserModel extends BaseModel {
             $this->errors['login'] = "Логин должен быть от 5 до 20 символов\n
             начинатся с буквы и состоять из букв, цифр, нижнего подчеркивания и точки";
         }
-        if ($this->findBy(array("login" => $this->login)) != false) {
+        if (self::findBy(array("login" => $this->login)) != false) {
             $this->errors['login'] = 'Пользователь с таким логином уже существует';
         }
-        if ($this->findBy(array("email" => $this->email)) != false) {
+        if (self::findBy(array("email" => $this->email)) != false) {
             $this->errors['email'] = 'Пользователь с таким E-mail уже существует';
         }
         if (preg_match('/^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,6})$/', $this->email) == 0) {
@@ -39,12 +36,12 @@ class UserModel extends BaseModel {
     }
 
     /**
-     * Находит первого пользователя, который подпадает под указанные условия поиска,
-     * если пользователь не найден возвращает false
-     * @param array $condition массив: поле - значение
+     * Finds the first user who falls under these search terms
+     * if the user isn't found, returns false
+     * @param array $condition array: field - value
      * @return mixed
      */
-    public function findBy(array $condition) {
+    public static function findBy(array $condition) {
         $query = "SELECT * FROM users";
         if (!empty($condition)) {
             $query .= " WHERE ";
@@ -64,7 +61,7 @@ class UserModel extends BaseModel {
     }
 
     /**
-     * добавляет данные о новом пользователе в базу данных
+     * adds information about the new user to the database
      * @return bool
      */
     public function addUser() {
@@ -79,15 +76,15 @@ class UserModel extends BaseModel {
     }
 
     /**
-     * возвращает захэшированный пароль
+     * returns hash password
      * @param $pass
      * @return bool|string
      */
-    protected static function getHashPass($pass) {
-        $options = [
+    public static function getHashPass($pass) {
+        $options = array(
             'cost' => 11,
             'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
-        ];
+        );
         return password_hash($pass, PASSWORD_BCRYPT, $options);
     }
 }

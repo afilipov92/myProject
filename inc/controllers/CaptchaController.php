@@ -2,7 +2,7 @@
 
 class CaptchaController extends Controller {
     /**
-     * генерирует каптчу
+     * Generates CAPTCHA
      */
     public function indexAction() {
         $captcha = Captcha::generateCaptcha();

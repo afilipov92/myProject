@@ -6,14 +6,14 @@
         <div>
             <label for="login">Логин *:</label>
             <br/>
-            <input id="login" type="text" name="login" required value="<?= $this->msg->login ?>">
+            <input id="login" type="text" name="login" required value="<?= $this->data->login ?>">
 
             <p data-name="login"></p>
         </div>
         <div>
             <label for="email">E-mail адрес *:</label>
             <br/>
-            <input id="email" type="email" name="email" required value="<?= $this->msg->email ?>">
+            <input id="email" type="email" name="email" required value="<?= $this->data->email ?>">
 
             <p data-name="email"></p>
         </div>

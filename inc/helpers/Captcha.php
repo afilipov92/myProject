@@ -2,27 +2,22 @@
 
 class Captcha {
     /**
-     * Генерирует капчу. Возвращает вопрос. Ответ устанавливает в сессию
+     * Generates CAPTCHA. Returns string. Answer sets in session
      * @return string
      */
     public static function generateCaptcha() {
-        $answ = rand(1, 20);
-        $marker = rand(0, 1) ? '+' : '-';
-        $b = rand(1, $answ);
-        switch ($marker) {
-            case '+':
-                $a = $answ - $b;
-                break;
-            case '-':
-                $a = $answ + $b;
-                break;
+        $letters = 'ABCDEFGKIJKLMNOPQRSTUVWXYZ23456789';
+        $caplen = 6;
+        $captcha = '';
+        for ($i = 0; $i < $caplen; $i++){
+            $captcha .= $letters[ rand(0, strlen($letters)-1) ];
         }
-        SessionModel::setCaptcha($answ);
-        return $a . $marker . $b;
+        SessionModel::setCaptcha($captcha);
+        return $captcha;
     }
 
     /**
-     * проверка валидности каптчи
+     * checking validity captcha
      * @param $answ
      * @return bool
      */

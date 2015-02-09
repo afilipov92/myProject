@@ -1,35 +1,51 @@
 <?php
 
 class Controller {
-
+    /**
+     * @var View
+     */
     protected $view;
+    /**
+     * @var SessionModel
+     */
     protected $session;
 
     /**
-     * создает объекты View и SessionModel
+     * Creates objects: View and SessionModel
      */
     public function __construct() {
         $this->view = new View();
-        $this->session = new SessionModel();
+        $session = new SessionModel();
+        $this->session = $session;
+        $this->view->session = $this->session;
     }
 
     /**
-     * Возвращает URL для указанных параметров
-     * Число параметров - не менее одного
+     * Returns the URL for the parameters.
+     * The number of parameters - at least one
      * @param $controller
-     * @return mixed
+     * @return string - URL
      */
     public static function url($controller) {
         $args = func_get_args();
-        $a = BASE_URL . implode("/", $args);
-        return $a;
+        return BASE_URL . implode("/", $args);
     }
 
     /**
-     * проверяет была ли отправлена форма
+     * Checks the form submission
      * @return bool
      */
     public function isPost() {
         return !empty($_POST);
+    }
+
+    /**
+     * Выполняет перенаправление пользователя на указанный адрес
+     * @param $url
+     */
+    public function redirect($url)
+    {
+        header('Location: ' . $url);
+        die;
     }
 }

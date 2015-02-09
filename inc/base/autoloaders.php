@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Подргузка моделей
+ * loading models
  */
 spl_autoload_register(function ($class) {
     $modelFlag = strpos($class, 'Model');
@@ -16,7 +16,7 @@ spl_autoload_register(function ($class) {
 });
 
 /**
- * Подргузка контроллеров
+ * loadings controllers
  */
 spl_autoload_register(function ($class) {
     $controllerFlag = strpos($class, 'Controller');
@@ -31,7 +31,7 @@ spl_autoload_register(function ($class) {
 });
 
 /**
- * Подргузка классов из папки base
+ * loading classes from base
  */
 spl_autoload_register(function ($class) {
     $classFileName = BASE_PATH . 'base' . DIRECTORY_SEPARATOR . $class . '.php';
@@ -42,7 +42,7 @@ spl_autoload_register(function ($class) {
 });
 
 /**
- * Подргузка классов helpers
+ * loadings classes helpers
  */
 spl_autoload_register(function ($class) {
     $classFileName = BASE_PATH . 'helpers' . DIRECTORY_SEPARATOR . $class . '.php';

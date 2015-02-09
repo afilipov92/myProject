@@ -15,7 +15,7 @@ class Image {
     }
 
     /**
-     * добавление шума
+     * Add noise.
      * @param $img
      * @param $colLine1
      * @param $colLine2
@@ -29,38 +29,38 @@ class Image {
     }
 
     /**
-     * отрисовка каптчи
+     * Rendering CAPTCHA
      */
     public function send() {
-        // Создаем холст
+        // Creation of the canvas
         $img = imagecreate($this->imgWidth, $this->imgHeight);
-        // Создаем цвет фона
+        // Background color
         $backGroudColor = imagecolorallocate($img, rand(200, 255), rand(200, 255), rand(200, 255));
-        // заполняем фон
+        // Filling in the background
         imagefill($img, 0, 0, $backGroudColor);
-        // добавляем шум
+        // Adding noise
         $this->addNoise($img, 9, 12);
-        // рисуем картинку
+        // Drawing pictures
         $len = strlen($this->text);
         for ($i = 0; $i < $len; $i++) {
-            // Цвет текста
+            // text color
             $textColor = imagecolorallocate($img, rand(0, 150), rand(0, 150), rand(0, 150));
             imagettftext(
-                $img, // холст
-                $this->fontSize, // ращмер шрифта
-                rand(-10, 10), // угол наклона
-                5 + $i * 10, // сдвиг по горизонтали
-                ($this->imgHeight + $this->fontSize) / 2, // сдвиг по вертикали
-                $textColor, // цвет текста
-                BASE_PATH . "fonts" . DIRECTORY_SEPARATOR . $this->font, // имя шрифта
+                $img, // canvas
+                $this->fontSize, // font size
+                rand(-25, 25), // angle of slope
+                5 + $i * 10, // horizontal shift
+                ($this->imgHeight + $this->fontSize) / 2, // vertical shift
+                $textColor, // text color
+                BASE_PATH . "fonts" . DIRECTORY_SEPARATOR . $this->font, // name font
                 $this->text[$i]
             );
-        } // текст*
-        // заголовк для указания типа
+        }
+        // header to indicate the type
         header('Content-Type: image/png');
-        // выводим картинку в поток
+        // output image stream
         imagepng($img);
-        // Очищаем память
+        // memory cleaning
         imagedestroy($img);
     }
 }
