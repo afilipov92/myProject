@@ -26,17 +26,27 @@ class SessionModel {
     }
 
     /**
-     * @return bool Flag if the current user logged in
+     * returns flag if the current user logged in
+     * @return bool
      */
     public function isLoggedIn() {
         return isset($_SESSION['login']);
     }
 
     /**
-     * @return string The current user name if he is logged
+     * returns the current user name if he's logged
+     * @return string
      */
     public function getName() {
         return $this->isLoggedIn() ? $_SESSION['login'] : '';
+    }
+
+    /**
+     * returns the id of the user if he's logged
+     * @return string
+     */
+    public function getId() {
+        return $this->isLoggedIn() ? $_SESSION['id'] : '';
     }
 
     /**

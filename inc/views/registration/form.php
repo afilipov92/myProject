@@ -2,7 +2,7 @@
 <div id="block">
     <p align="center"><b>Форма регистрации</b></p>
 
-    <form name="form4" class="form1" method="post">
+    <form name="form1" class="form1" method="post">
         <div>
             <label for="login">Логин *:</label>
             <br/>

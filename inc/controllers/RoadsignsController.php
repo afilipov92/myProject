@@ -2,6 +2,27 @@
 
 class RoadsignsController extends Controller {
     public function indexAction() {
-        $this->view->display('roadsigns/map');
+        if (!$this->session->isLoggedIn()) {
+            $this->redirect(Controller::url('auth', 'login'));
+        }
+        $newRoadSign = new RoadsignModel($this->session->getId());
+        $this->view->result = "";
+        if ($this->isPost()) {
+            $newRoadSign->setAttributes($_POST);
+            if ($newRoadSign->isFormVaild()) {
+                if ($newRoadSign->addRoadSign()) {
+                    $this->view->result = "Вы успешно добавили знак";
+                } else {
+                    $this->view->result = "Ошибка сохранения";
+                }
+            } else {
+                $this->view->gbErrors = $newRoadSign->getErrors();
+            }
+
+        }
+        $this->view->data = $newRoadSign;
+
+        $this->view->display('roadsigns/form');
+       // $this->view->display('roadsigns/map');
     }
 }

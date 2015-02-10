@@ -40,7 +40,7 @@ class Controller {
     }
 
     /**
-     * Выполняет перенаправление пользователя на указанный адрес
+     * Redirects the user to the address
      * @param $url
      */
     public function redirect($url)
