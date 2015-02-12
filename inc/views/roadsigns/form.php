@@ -2,7 +2,7 @@
 <div id="block">
     <p align="center"><b>Форма добавления знака</b></p>
 
-    <form name="form4" class="form1" method="post">
+    <form id="form" name="form4" class="form1" method="post">
         <div>
             <label for="latitude">Широта *:</label>
             <br/>
@@ -20,7 +20,7 @@
         <div>
             <label for="number">Номер знака *:</label>
             <br/>
-            <input id="number" type="text" name="number" required value=""<?= $this->data->number ?>">
+            <input id="number" type="text" name="number" required value="<?= $this->data->number ?>">
 
             <p data-name="number"></p>
         </div>

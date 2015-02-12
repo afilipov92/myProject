@@ -68,13 +68,37 @@
 })();
 
 
-$(document).ready(function () {
+$(function () {
     $(".extremum-click").click(function () {
         $(".extremum-slide").hide();
         $(this).siblings(".extremum-slide").slideToggle("slow");
         $('#map-canvas').css('height', '120%');
     });
 });
+
+//обработка загрузки знаков на карту
+/*(function (){
+    window.onload = function() {
+        $('#map-canvas').load('ajax');
+    }
+})();*/
+
+//обработка формы знаков
+$(function(){
+    $('#form').submit(function(event){
+        //отмена стандартного действия при отправке формы
+        event.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: window.location.href,
+            data: $(this).serialize(),
+            success: function(result){
+                alert('HELLO!');
+            }
+        });
+    });
+});
+
 
 
 

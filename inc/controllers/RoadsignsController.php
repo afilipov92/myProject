@@ -20,11 +20,11 @@ class RoadsignsController extends Controller {
             }
 
         }*/
+        $this->view->roadSigns = RoadsignModel::selectSigns();
         $this->view->data = $newRoadSign;
         $marker = new MarkerModel();
         $this->view->markers = $marker->getListMarkers();
         $this->view->cat = $marker->categories;
-        //$this->view->display('roadsigns/form');
         $this->view->display('roadsigns/map');
     }
 }

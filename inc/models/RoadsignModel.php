@@ -50,4 +50,8 @@ class RoadsignModel extends BaseModel{
         ));
     }
 
+    public static function  selectSigns() {
+        return self::connect()->query('SELECT * FROM road_signs', PDO::FETCH_ASSOC)->fetchAll();
+    }
+
 }
