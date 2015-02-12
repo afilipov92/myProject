@@ -7,7 +7,7 @@ class RoadsignsController extends Controller {
         }
         $newRoadSign = new RoadsignModel($this->session->getId());
         $this->view->result = "";
-        /*if ($this->isPost()) {
+        if ($this->isPost()) {
             $newRoadSign->setAttributes($_POST);
             if ($newRoadSign->isFormVaild()) {
                 if ($newRoadSign->addRoadSign()) {
@@ -19,12 +19,17 @@ class RoadsignsController extends Controller {
                 $this->view->gbErrors = $newRoadSign->getErrors();
             }
 
-        }*/
-        $this->view->roadSigns = RoadsignModel::selectSigns();
+        }
+       // $this->view->roadSigns = RoadsignModel::selectSigns();
         $this->view->data = $newRoadSign;
         $marker = new MarkerModel();
         $this->view->markers = $marker->getListMarkers();
         $this->view->cat = $marker->categories;
-        $this->view->display('roadsigns/map');
+        if($this->isAjax()){
+            $this->view->displayPartial('roadsigns/form');
+        } else {
+            $this->view->display('roadsigns/map');
+        }
+       // $this->view->display('roadsigns/map');
     }
 }

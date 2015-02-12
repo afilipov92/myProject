@@ -77,23 +77,29 @@ $(function () {
 });
 
 //обработка загрузки знаков на карту
-/*(function (){
-    window.onload = function() {
-        $('#map-canvas').load('ajax');
-    }
-})();*/
+$(function () {
+    window.onload = function () {
 
-//обработка формы знаков
-$(function(){
-    $('#form').submit(function(event){
+    }
+});
+
+//обработка форм
+$(function () {
+    $('#form').submit(function (event) {
+        var form = $(this);
         //отмена стандартного действия при отправке формы
         event.preventDefault();
         $.ajax({
             type: 'POST',
             url: window.location.href,
-            data: $(this).serialize(),
-            success: function(result){
-                alert('HELLO!');
+            data: form.serialize(),
+            success: function (result) {
+                if (result.indexOf('alert-warning') >= 0) {
+                    $(result).prependTo(form.parent());
+                    form.remove();
+                } else {
+                    window.location.reload();
+                }
             }
         });
     });

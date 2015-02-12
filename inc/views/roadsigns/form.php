@@ -35,9 +35,6 @@
         <div>
             <input type="submit" name="submit" id="submit" value="Добавить знак">
         </div>
-    </form>
-</div>
-
 <?php
 if (isset($this->gbErrors) AND !empty($this->gbErrors)) {
     ?>
@@ -52,3 +49,6 @@ if (isset($this->gbErrors) AND !empty($this->gbErrors)) {
         </div>
     </div>
 <?php } ?>
+
+    </form>
+</div>

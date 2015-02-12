@@ -1,8 +1,7 @@
 <div><?= $this->result ?></div>
 <div id="block">
-    <p align="center"><b>Форма регистрации</b></p>
-
-    <form name="form1" class="form1" method="post">
+    <form id="form" name="form1" class="form1" method="post">
+        <p align="center"><b>Форма регистрации</b></p>
         <div>
             <label for="login">Логин *:</label>
             <br/>
@@ -45,8 +44,6 @@
         <div>
             <input type="submit" name="submit" id="submit" value="Регистрация">
         </div>
-    </form>
-</div>
 
 <?php
 if (isset($this->gbErrors) AND !empty($this->gbErrors)) {
@@ -62,3 +59,6 @@ if (isset($this->gbErrors) AND !empty($this->gbErrors)) {
         </div>
     </div>
 <?php } ?>
+
+    </form>
+</div>

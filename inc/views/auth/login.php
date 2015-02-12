@@ -1,4 +1,4 @@
-<form class="form-horizontal" method="post">
+<form id="form" class="form-horizontal" method="post">
     <fieldset>
         <legend>Вход в систему</legend>
         <div class="form-group">

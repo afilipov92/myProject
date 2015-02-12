@@ -39,6 +39,11 @@ class Controller {
         return !empty($_POST);
     }
 
+    public function isAjax(){
+        return (isset($_GET['ajax']) || (isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest'));
+    }
+
+
     /**
      * Redirects the user to the address
      * @param $url

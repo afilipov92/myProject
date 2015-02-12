@@ -50,6 +50,10 @@ class RoadsignModel extends BaseModel{
         ));
     }
 
+    /**
+     * sample of all road signs
+     * @return array
+     */
     public static function  selectSigns() {
         return self::connect()->query('SELECT * FROM road_signs', PDO::FETCH_ASSOC)->fetchAll();
     }
