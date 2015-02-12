@@ -97,8 +97,8 @@ $(function () {
                 if (result.indexOf('alert-warning') >= 0) {
                     $(result).prependTo(form.parent());
                     form.remove();
-                } else {
-                    window.location.reload();
+               } else {
+                   // window.location =  разные перенаправления
                 }
             }
         });
