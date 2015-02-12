@@ -4,11 +4,12 @@ define('DEFAULT_CONTROLLER', 'Roadsigns');
 
 define('BASE_PATH', __DIR__ . DIRECTORY_SEPARATOR);
 define('BASE_URL', 'http://' . $_SERVER['SERVER_NAME'] . str_replace('index.php', '', $_SERVER['SCRIPT_NAME']));
+define('IMAGE_PATH', str_replace('inc', '', BASE_PATH) . 'images' . DIRECTORY_SEPARATOR . 'road_signs' . DIRECTORY_SEPARATOR);
 
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'gai2');
 define('DB_USER', 'root');
-define('DB_PASSWORD', '-----');
+define('DB_PASSWORD', '------');
 
 define('CHAR_SET', 'UTF-8');
 define('SMTP_SEC', 'ssl');

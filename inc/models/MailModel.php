@@ -24,10 +24,6 @@ class MailModel {
         $mail->Subject = THEME_MAIL;
         $mail->MsgHTML($message);
         $mail->AddAddress($userEmail);
-        if (!$mail->send()) {
-            return false;
-        } else {
-            return true;
-        }
+        return $mail->send();
     }
 }

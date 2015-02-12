@@ -15,7 +15,7 @@ for ($i = $start_page; $i <= $col_pages; $i++) {
             foreach ($arr as $url) {
                 $filename = substr($url, strrpos($url, '/') + 1);
                 try {
-                    copy($site . $url, $folder . $filename);
+                    copy($site . $url, $folder . $i . '/' . $filename);
                 } catch (Exception $e) {
                     throw new Exception("Ошибка копирования" . $e->getMessage());
                 }

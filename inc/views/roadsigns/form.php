@@ -1,6 +1,6 @@
 <div><?= $this->result ?></div>
 <div id="block">
-    <p align="center"><b>Форма регистрации</b></p>
+    <p align="center"><b>Форма добавления знака</b></p>
 
     <form name="form4" class="form1" method="post">
         <div>
