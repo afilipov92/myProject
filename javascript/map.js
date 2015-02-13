@@ -20,6 +20,34 @@
         };
         var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
+        //обработка загрузки знаков на карту
+        $(function () {
+            /*$.get(window.URLS.MAP_POINTS, function(pointsArray) {
+                $.each(pointsArray, function(key,point) {
+                    addSign(point);
+                });
+            });*/
+            $.ajax({
+                url: window.URLS.MAP_POINTS,
+                success: function(pointsArray) {
+                    $.each(pointsArray, function(key,point) {
+                        addSign(point);
+                    });
+                }
+            });
+        });
+
+        function addSign(pointData) {
+            var folder = pointData.number.substr(0, 1);
+            var image = 'images/road_signs/' + folder + '/' + pointData.number + '.png';
+            var myLatLng = new google.maps.LatLng(pointData.latitude, pointData.longitude);
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                icon: image
+            });
+        }
+
         google.maps.event.addListener(map, 'rightclick', function (event) {
             $('#form-signs').show();
             placeMarker(event.latLng, map);
@@ -52,6 +80,7 @@
         google.maps.event.addListener(placeMarker.marker, 'dragend', function () {
             map.panTo(placeMarker.marker.getPosition());
         });
+
     }
 
     function setMarker(marker) {
@@ -60,50 +89,16 @@
             $('#number').attr('value', id).focus();
             var folder = id.substr(0, 1);
             var image = 'images/road_signs/' + folder + '/' + id + '.png';
-            marker.setIcon(image);
+            var markerIcon = {
+                scaledSize: new google.maps.Size(40, 40),
+                url: image
+            };
+            marker.setIcon(markerIcon);
         });
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
 })();
-
-
-$(function () {
-    $(".extremum-click").click(function () {
-        $(".extremum-slide").hide();
-        $(this).siblings(".extremum-slide").slideToggle("slow");
-        $('#map-canvas').css('height', '120%');
-    });
-});
-
-//обработка загрузки знаков на карту
-$(function () {
-    window.onload = function () {
-
-    }
-});
-
-//обработка форм
-$(function () {
-    $('#form').submit(function (event) {
-        var form = $(this);
-        //отмена стандартного действия при отправке формы
-        event.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: window.location.href,
-            data: form.serialize(),
-            success: function (result) {
-                if (result.indexOf('alert-warning') >= 0) {
-                    $(result).prependTo(form.parent());
-                    form.remove();
-               } else {
-                   // window.location =  разные перенаправления
-                }
-            }
-        });
-    });
-});
 
 
 

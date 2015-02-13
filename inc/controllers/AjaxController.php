@@ -1,7 +1,10 @@
 <?php
 
 class AjaxController extends Controller {
-    public function indexAction() {
-
+    /**
+     * render parameters in js
+     */
+    public function mapAction() {
+        $this->renderJson(RoadsignModel::selectSigns());
     }
 }

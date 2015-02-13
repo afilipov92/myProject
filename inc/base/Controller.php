@@ -43,6 +43,10 @@ class Controller {
         return (isset($_GET['ajax']) || (isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest'));
     }
 
+    public function renderJson($data){
+        header('Content-Type: application/json');
+        echo json_encode($data);
+    }
 
     /**
      * Redirects the user to the address
