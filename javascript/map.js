@@ -1,4 +1,5 @@
 (function () {
+    //обновление долготы и широты в форме при перемещении знака
     function updateMarkerPosition(latLng) {
         $('#latitude').attr('value', latLng.lat());
         $('#longitude').attr('value', latLng.lng());
@@ -37,6 +38,7 @@
             });
         });
 
+        //отображение знаков из бд
         function addSign(pointData) {
             var folder = pointData.number.substr(0, 1);
             var image = 'images/road_signs/' + folder + '/' + pointData.number + '.png';
@@ -48,17 +50,19 @@
             });
         }
 
+        //отображение формы по клику правой кнопки мыши и установка маркера в этом месте
         google.maps.event.addListener(map, 'rightclick', function (event) {
             $('#form-signs').show();
             placeMarker(event.latLng, map);
             setMarker(placeMarker.marker);
         });
 
+        //спрятать форму по клику мыши
         google.maps.event.addListener(map, 'click', function () {
             $('#form-signs').hide();
         });
     }
-
+     //устанавливает местоположение нового маркера(маркер можно перетаскивать)
     function placeMarker(position, map) {
         if ('marker' in placeMarker) {
             alert('маркер уже есть!');
@@ -71,18 +75,21 @@
             });
             map.panTo(position);
         }
+
         updateMarkerPosition(placeMarker.marker.getPosition());
 
+        //изменение координат в форме при перетаскивании маркера
         google.maps.event.addListener(placeMarker.marker, 'drag', function () {
             updateMarkerPosition(placeMarker.marker.getPosition());
         });
 
+        //устанавливает центр экрана по расположения маркера, после окончания перетаскивания
         google.maps.event.addListener(placeMarker.marker, 'dragend', function () {
             map.panTo(placeMarker.marker.getPosition());
         });
 
     }
-
+    //изменения вида маркера по выбранному знаку
     function setMarker(marker) {
         $('img').click(function () {
             var id = $(this).attr('id');

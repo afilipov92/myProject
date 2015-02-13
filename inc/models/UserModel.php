@@ -12,7 +12,7 @@ class UserModel extends BaseModel {
      */
     public function isFormVaild() {
         $this->errors = array();
-        if (preg_match('/^[a-zA-Z][a-zA-Z0-9-_\.]{5,20}$/', $this->login) == 0) {
+        if (preg_match('/^[a-zA-Z][a-zA-Z0-9-_\.]{4,20}$/', $this->login) == 0) {
             $this->errors['login'] = "Логин должен быть от 5 до 20 символов\n
             начинатся с буквы и состоять из букв, цифр, нижнего подчеркивания и точки";
         }
@@ -25,7 +25,7 @@ class UserModel extends BaseModel {
         if (preg_match('/^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,6})$/', $this->email) == 0) {
             $this->errors['email'] = 'Проверьте ввод email';
         }
-        if (preg_match('/(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/', $this->password) == 0) {
+        if (preg_match('/(?=^.{5,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/', $this->password) == 0) {
             $this->errors['password'] = "Проверьте ввод пароля (пароль должен быть от 6 символов, должны присутствовать:\n
             загланвые буквы, цифры, допускаются спец символы)";
         }
