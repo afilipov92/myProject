@@ -1,49 +1,23 @@
+<div class="container">
 <div><?= $this->result ?></div>
-<div id="block">
-    <form id="form" name="form1" class="form1" method="post">
-        <p align="center"><b>Форма регистрации</b></p>
-        <div>
+    <form id="form" name="form1" class="form-signin" method="post">
+        <h2 class="form-signin-heading">Форма регистрации</h2>
             <label for="login">Логин *:</label>
-            <br/>
-            <input id="login" type="text" name="login" required value="<?= $this->data->login ?>">
-
-            <p data-name="login"></p>
-        </div>
-        <div>
-            <label for="email">E-mail адрес *:</label>
-            <br/>
-            <input id="email" type="email" name="email" required value="<?= $this->data->email ?>">
-
-            <p data-name="email"></p>
-        </div>
-        <div>
+            <input id="login" name="login" type="text" class="form-control" required="true" value="<?= $this->data->login ?>">
+            <label for="email">E-mail *:</label>
+            <input id="email" name="email" type="email" class="form-control" required="true" value="<?= $this->data->email ?>">
             <label for="password">Пароль *:</label>
-            <br/>
-            <input id="password" type="password" name="password" required value="">
-
-            <p data-name="password"></p>
-        </div>
-        <div>
+            <input id="password" name="password" type="password" class="form-control" required="true">
             <label for="passwordConfirm">Пароль (подтверждение) *:</label>
-            <br/>
-            <input id="passwordConfirm" type="password" name="passwordConfirm" required value="">
+            <input id="passwordConfirm" name="passwordConfirm" type="password" class="form-control" required="true">
 
-            <p data-name="passwordConfirm"></p>
-        </div>
-        <div>
             <label for="captcha">Защита от роботов *:</label>
-
-            <div>
-                <div>
-                    <span><img src="<?= Controller::url('captcha') ?>"/></span>
-                    <input id="captcha" name="captcha" placeholder="Введите ответ" type="text" required>
+                <div class="input-group">
+                    <span class="input-group-addon" style="padding: 0;"><img src="<?= Controller::url('captcha') ?>" /></span>
+                    <input id="captcha" name="captcha" class="form-control" placeholder="Введите ответ" type="text"
+                               required="true">
                 </div>
-                <p data-name="captcha"></p>
-            </div>
-        </div>
-        <div>
-            <input type="submit" name="submit" id="submit" value="Регистрация">
-        </div>
+            <button id="" name="submit" class="btn btn-lg btn-primary btn-block">Регистрация</button>
 
 <?php
 if (isset($this->gbErrors) AND !empty($this->gbErrors)) {
@@ -59,6 +33,5 @@ if (isset($this->gbErrors) AND !empty($this->gbErrors)) {
         </div>
     </div>
 <?php } ?>
-
-    </form>
+</form>
 </div>
