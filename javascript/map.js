@@ -41,7 +41,7 @@
         //отображение знаков из бд
         function addSign(pointData) {
             var folder = pointData.number.substr(0, 1);
-            var image = 'images/road_signs/' + folder + '/' + pointData.number + '.png';
+            var image = 'images/road_signs/' + folder + '/' + pointData.number + '.png' + '?angle=' + pointData.rotation;
             var myLatLng = new google.maps.LatLng(pointData.latitude, pointData.longitude);
             var marker = new google.maps.Marker({
                 position: myLatLng,
