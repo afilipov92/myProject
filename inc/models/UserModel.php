@@ -30,7 +30,7 @@ class UserModel extends BaseModel {
             загланвые буквы, цифры, допускаются спец символы)";
         }
         if ($this->password != $this->passwordConfirm) {
-            $errors['password'] = 'Пароли не совпадают';
+            $this->errors['password'] = 'Пароли не совпадают';
         }
         return empty($this->errors);
     }

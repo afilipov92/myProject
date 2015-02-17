@@ -32,6 +32,13 @@
             <p data-name="number"></p>
         </div>
         <div>
+            <label for="rotation">Поворот *:</label>
+            <br/>
+            <input id="rotation" type="text" name="rotation" required value="<?= $this->data->rotation ?>">
+
+            <p data-name="number"></p>
+        </div>
+        <div>
             <label for="info">Дополнительная инфрмация:</label>
             <br/>
                 <textarea id="info" name="info">

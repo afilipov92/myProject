@@ -31,7 +31,7 @@
             $.ajax({
                 url: window.URLS.MAP_POINTS,
                 success: function(pointsArray) {
-                    $.each(pointsArray, function(key,point) {
+                    $.each(pointsArray, function(point) {
                         addSign(point);
                     });
                 }
@@ -56,6 +56,7 @@
                 $('#number').attr('value', pointData.number);
                 $('#latitude').attr('value', pointData.latitude);
                 $('#longitude').attr('value', pointData.longitude);
+                $('#rotation').attr('value', pointData.rotation);
                 $('#form-signs').show();
                 setMarker(marker);
             });
@@ -65,6 +66,7 @@
         google.maps.event.addListener(map, 'rightclick', function (event) {
             $('#id').attr('value', '');
             $('#number').attr('value', '');
+            $('#rotation').attr('value', '0');
             $('#form-signs').show();
             placeMarker(event.latLng, map);
             setMarker(placeMarker.marker);

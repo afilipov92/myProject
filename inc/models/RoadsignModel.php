@@ -5,6 +5,7 @@ class RoadsignModel extends BaseModel{
     public $latitude = "";
     public $longitude = "";
     public $number = "";
+    public $rotation = "";
     public $info = "";
     public $id_user;
     public $date;
@@ -40,11 +41,12 @@ class RoadsignModel extends BaseModel{
      * @return bool
      */
     public function addRoadSign() {
-        $ins = self::connect()->prepare('INSERT INTO road_signs (latitude, longitude, number, info, date, id_user) VALUES (:latitude, :longitude, :number, :info, :date, :id_user)');
+        $ins = self::connect()->prepare('INSERT INTO road_signs (latitude, longitude, number, rotation, info, date, id_user) VALUES (:latitude, :longitude, :number, :rotation, :info, :date, :id_user)');
         return $ins->execute(array(
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
             'number' => $this->number,
+            'rotation' => $this->rotation,
             'info' => $this->info,
             'date' => $this->date,
             'id_user' => $this->id_user
@@ -52,11 +54,12 @@ class RoadsignModel extends BaseModel{
     }
 
     public function editRoadSign() {
-        $ins = self::connect()->prepare('UPDATE road_signs SET latitude=:latitude, longitude=:longitude, number=:number, info=:info, date=:date, id_user=:id_user WHERE id=:id');
+        $ins = self::connect()->prepare('UPDATE road_signs SET latitude=:latitude, longitude=:longitude, number=:number, rotation=:rotation, info=:info, date=:date, id_user=:id_user WHERE id=:id');
         return $ins->execute(array(
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
             'number' => $this->number,
+            'rotation' => $this->rotation,
             'info' => $this->info,
             'date' => $this->date,
             'id_user' => $this->id_user,

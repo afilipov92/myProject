@@ -4,7 +4,7 @@ class Image {
     protected $font = "consola.ttf";
     protected $fontSize = 12;
     protected $imgWidth = 80;
-    protected $imgHeight = 40;
+    protected $imgHeight = 43;
     protected $text;
 
     /**
