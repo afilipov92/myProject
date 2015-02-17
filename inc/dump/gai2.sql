@@ -12,25 +12,17 @@ CREATE TABLE IF NOT EXISTS `road_signs` (
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
   `number` varchar(100) NOT NULL,
+  `rotation` int(11) NOT NULL,
   `info` text,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_user` int(10) unsigned NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
-INSERT INTO `road_signs` (`id`, `latitude`, `longitude`, `number`, `info`, `date`, `id_user`) VALUES
-(12, 52.44429426337229, 30.999362468719482, '1_10', '                ', '2015-02-12 16:08:02', 1),
-(13, 52.443941124959416, 30.999877452850342, '1_11_1', '                ', '2015-02-12 16:13:32', 1),
-(14, 52.44469971509612, 30.999491214752197, '1_11_1', '                ', '2015-02-13 14:45:05', 1),
-(15, 52.4461253060454, 31.00942611694336, '1_11_1', '                ', '2015-02-13 14:50:25', 1),
-(16, 52.447890882319605, 30.998868942260742, '5_10_1', '                ', '2015-02-13 15:00:35', 1),
-(17, 52.44547137097053, 30.992496013641357, '1_11_1', '                ', '2015-02-13 15:39:13', 1),
-(18, 52.44205767228136, 30.99522113800049, '2_2', '                ', '2015-02-13 15:39:57', 1),
-(19, 52.443117124320686, 31.01043462753296, '1_10', '                ', '2015-02-13 15:42:59', 1),
-(20, 52.43838209167545, 31.001036167144775, '1_13', '                ', '2015-02-13 15:50:20', 1),
-(21, 52.4469361720563, 30.98417043685913, '2_3_1', '                ', '2015-02-13 15:51:17', 1),
-(22, 52.4469361720563, 30.98417043685913, '2_3_1', '                ', '2015-02-13 15:51:19', 1),
-(23, 52.4469361720563, 30.98417043685913, '2_3_1', '                ', '2015-02-13 15:51:19', 1),
-(24, 52.45218028359611, 31.007966995566676, '1_5', '                ', '2015-02-13 15:51:41', 1);
+INSERT INTO `road_signs` (`id`, `latitude`, `longitude`, `number`, `rotation`, `info`, `date`, `id_user`) VALUES
+(33, 52.44380810289314, 31.000349521636963, '1_11_1', 20, '                ', '2015-02-17 12:53:28', 1),
+(34, 52.44450129993606, 31.003739833831787, '1_11_1', 0, '                ', '2015-02-17 13:03:05', 1),
+(35, 52.4443312714823, 30.99989891052246, '1_2', 0, '                ', '2015-02-17 17:12:05', 1),
+(36, 52.442264719356324, 30.998718738555908, '2_5', 0, '                ', '2015-02-17 17:12:56', 1);
 
 CREATE TABLE IF NOT EXISTS `users` (
 `id` int(10) unsigned NOT NULL,
@@ -54,7 +46,7 @@ ALTER TABLE `users`
 
 
 ALTER TABLE `road_signs`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
 ALTER TABLE `users`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 

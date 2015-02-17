@@ -56,7 +56,7 @@
                 $('#number').attr('value', pointData.number);
                 $('#latitude').attr('value', pointData.latitude);
                 $('#longitude').attr('value', pointData.longitude);
-                $('#rotation').attr('value', pointData.rotation);
+               // $('#rotation').attr('value', pointData.rotation);
                 $('#form-signs').show();
                 setMarker(marker);
             });
