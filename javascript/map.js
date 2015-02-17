@@ -24,10 +24,10 @@
         //обработка загрузки знаков на карту
         $(function () {
             /*$.get(window.URLS.MAP_POINTS, function(pointsArray) {
-                $.each(pointsArray, function(key,point) {
-                    addSign(point);
-                });
-            });*/
+             $.each(pointsArray, function(key,point) {
+             addSign(point);
+             });
+             });*/
             $.ajax({
                 url: window.URLS.MAP_POINTS,
                 success: function(pointsArray) {
@@ -46,12 +46,25 @@
             var marker = new google.maps.Marker({
                 position: myLatLng,
                 map: map,
-                icon: image
+                icon: image,
+                draggable: true,
+                title: pointData.id
+            });
+            google.maps.event.addListener(marker, 'rightclick', function() {
+                document.getElementById('form').reset();
+                $('#id').attr('value', pointData.id);
+                $('#number').attr('value', pointData.number);
+                $('#latitude').attr('value', pointData.latitude);
+                $('#longitude').attr('value', pointData.longitude);
+                $('#form-signs').show();
+                setMarker(marker);
             });
         }
 
         //отображение формы по клику правой кнопки мыши и установка маркера в этом месте
         google.maps.event.addListener(map, 'rightclick', function (event) {
+            $('#id').attr('value', '');
+            $('#number').attr('value', '');
             $('#form-signs').show();
             placeMarker(event.latLng, map);
             setMarker(placeMarker.marker);
@@ -62,7 +75,7 @@
             $('#form-signs').hide();
         });
     }
-     //устанавливает местоположение нового маркера(маркер можно перетаскивать)
+    //устанавливает местоположение нового маркера(маркер можно перетаскивать)
     function placeMarker(position, map) {
         if ('marker' in placeMarker) {
             alert('маркер уже есть!');
@@ -106,10 +119,3 @@
 
     google.maps.event.addDomListener(window, 'load', initialize);
 })();
-
-
-
-
-
-
-

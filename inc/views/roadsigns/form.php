@@ -4,6 +4,13 @@
 
     <form id="form" name="form4" class="form1" method="post">
         <div>
+            <label for="id">ИД :</label>
+            <br/>
+            <input id="id" type="text" name="id" value="<?= $this->data->id ?>">
+
+            <p data-name="id"></p>
+        </div>
+        <div>
             <label for="latitude">Широта *:</label>
             <br/>
             <input id="latitude" type="text" name="latitude" required value="<?= $this->data->latitude ?>">
@@ -34,6 +41,8 @@
 
         <div>
             <input type="submit" name="submit" id="submit" value="Добавить знак">
+            <input type="submit" name="edit" id="edit" value="Редактировать знак">
+            <input type="submit" name="delete" id="delete" value="Удалить знак">
         </div>
 <?php
 if (isset($this->gbErrors) AND !empty($this->gbErrors)) {

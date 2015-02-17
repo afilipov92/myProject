@@ -7,7 +7,7 @@ $(function () {
 });
 
 //обработка форм
-$(function(){
+/*$(function(){
     $('#form').submit(function (event) {
         var form = $(this);
         event.preventDefault();
@@ -22,9 +22,8 @@ $(function(){
                     form.remove();
                 } else {
                     window.location.href = url;
-                    alert("Регистрация Успешна!");
                 }
             }
         })
     });
-});
+});*/

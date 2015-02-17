@@ -39,6 +39,14 @@ class Controller {
         return !empty($_POST);
     }
 
+    public function isEditPost() {
+        return isset($_POST['edit']);
+    }
+
+    public function isDeletePost() {
+        return isset($_POST['delete']);
+    }
+
     public function isAjax(){
         return (isset($_GET['ajax']) || (isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest'));
     }

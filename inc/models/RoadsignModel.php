@@ -1,6 +1,7 @@
 <?php
 
 class RoadsignModel extends BaseModel{
+    public $id = "";
     public $latitude = "";
     public $longitude = "";
     public $number = "";
@@ -50,6 +51,26 @@ class RoadsignModel extends BaseModel{
         ));
     }
 
+    public function editRoadSign() {
+        $ins = self::connect()->prepare('UPDATE road_signs SET latitude=:latitude, longitude=:longitude, number=:number, info=:info, date=:date, id_user=:id_user WHERE id=:id');
+        return $ins->execute(array(
+            'latitude' => $this->latitude,
+            'longitude' => $this->longitude,
+            'number' => $this->number,
+            'info' => $this->info,
+            'date' => $this->date,
+            'id_user' => $this->id_user,
+            'id' => $this->id
+        ));
+    }
+
+    public function deleteRoadSign() {
+        $ins = self::connect()->prepare('DELETE FROM road_signs WHERE id=:id');
+        return $ins->execute(array(
+            'id' => $this->id
+        ));
+    }
+
     /**
      * sample of all road signs
      * @return array
@@ -57,5 +78,4 @@ class RoadsignModel extends BaseModel{
     public static function  selectSigns() {
         return self::connect()->query('SELECT * FROM road_signs', PDO::FETCH_ASSOC)->fetchAll();
     }
-
 }

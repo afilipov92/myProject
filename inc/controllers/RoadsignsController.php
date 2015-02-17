@@ -10,17 +10,31 @@ class RoadsignsController extends Controller {
         if ($this->isPost()) {
             $newRoadSign->setAttributes($_POST);
             if ($newRoadSign->isFormVaild()) {
-                if ($newRoadSign->addRoadSign()) {
-                    $this->view->result = "Вы успешно добавили знак";
-                } else {
-                    $this->view->result = "Ошибка сохранения";
+                if($this->isEditPost()){
+                    if ($newRoadSign->editRoadSign()) {
+                        $this->view->result = "Вы успешно обновили знак";
+                    } else {
+                        $this->view->result = "Ошибка обновления";
+                    }
+                } else if($this->isDeletePost()) {
+                    if ($newRoadSign->deleteRoadSign()) {
+                        $this->view->result = "Вы успешно удалили знак";
+                    } else {
+                        $this->view->result = "Ошибка удаления знака";
+                    }
+                }
+                else {
+                    if ($newRoadSign->addRoadSign()) {
+                        $this->view->result = "Вы успешно добавили знак";
+                    } else {
+                        $this->view->result = "Ошибка сохранения";
+                    }
                 }
             } else {
                 $this->view->gbErrors = $newRoadSign->getErrors();
             }
 
         }
-       // $this->view->roadSigns = RoadsignModel::selectSigns();
         $this->view->data = $newRoadSign;
         $marker = new MarkerModel();
         $this->view->markers = $marker->getListMarkers();
@@ -30,6 +44,5 @@ class RoadsignsController extends Controller {
         } else {
             $this->view->display('roadsigns/map');
         }
-       // $this->view->display('roadsigns/map');
     }
 }
