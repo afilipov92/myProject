@@ -1,13 +1,12 @@
 $(function () {
-    $(".extremum-click").click(function () {
+    $(".btn-info").click(function () {
         $(".extremum-slide").hide();
-        $(this).siblings(".extremum-slide").slideToggle("slow");
-        $('#map-canvas').css('height', '120%');
+        $(this).siblings(".extremum-slide").slideToggle();
     });
 });
 
 //обработка форм
-/*$(function(){
+$(function () {
     $('#form').submit(function (event) {
         var form = $(this);
         event.preventDefault();
@@ -15,9 +14,9 @@ $(function () {
             url: window.location.href,
             data: form.serializeArray(),
             type: 'POST',
-            success: function(data){
+            success: function (data) {
                 var url = data.locationUrl || window.location.href;
-                if(data.indexOf('alert-warning')>=0){
+                if (data.indexOf('alert-warning') >= 0) {
                     $(data).prependTo(form.parent());
                     form.remove();
                 } else {
@@ -26,4 +25,4 @@ $(function () {
             }
         })
     });
-});*/
+});

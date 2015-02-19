@@ -16,4 +16,3 @@
     </script>
 </head>
 <body>
-<?= $this->displayPartial('common/navigation'); ?>

@@ -32,7 +32,7 @@ class BaseModel {
      */
     public function setAttributes(array $arr) {
         foreach ($arr as $key => $val) {
-            $this->$key = $val;
+            $this->$key = trim($val);
         }
     }
 

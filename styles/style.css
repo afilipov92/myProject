@@ -9,11 +9,13 @@ html, body {
     height: 100%;
     position: relative;
     z-index: 1;
+    margin: 0;
+    padding: 0;
 }
 
 #form-signs {
-    top: 5%;
-    left: 5%;
+    top: 8%;
+    left: 2%;
     position: absolute;
     z-index: 2;
     display: none;
@@ -49,5 +51,28 @@ html, body {
 }
 
 .form-signin .btn {
+    margin-top: 10px;
+}
+
+.navigation{
+    position: absolute;
+    background: #337ab7;
+    background: linear-gradient(to top, #337ab7, #6495ED);
+    width: 100%;
+    min-height: 50px;
+    margin-bottom: 0;
+    border: 1px solid transparent;
+}
+.navigation .navbar-nav > li > a {
+    color: #ffffff;
+}
+
+.navigation .navbar-nav > li > a:hover,
+.navigation .navbar-nav > li > a:focus {
+    color: #ffffff;
+    background: linear-gradient(to top, #2C699D, #6495ED);
+}
+
+.block{
     margin-top: 10px;
 }
