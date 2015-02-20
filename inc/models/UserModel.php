@@ -22,7 +22,7 @@ class UserModel extends BaseModel {
         if (self::findBy(array("email" => $this->email)) != false) {
             $this->errors['email'] = 'Пользователь с таким E-mail уже существует';
         }
-        if (preg_match('/^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,6})$/', $this->email) == 0) {
+        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             $this->errors['email'] = 'Проверьте ввод email';
         }
         if (preg_match('/(?=^.{5,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/', $this->password) == 0) {

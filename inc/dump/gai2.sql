@@ -29,13 +29,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   `login` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(250) NOT NULL,
-  `id_status` int(10) unsigned NOT NULL,
-  `hash` varchar(100) NOT NULL
+  `id_status` int(1) unsigned NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
-INSERT INTO `users` (`id`, `login`, `email`, `password`, `id_status`, `hash`) VALUES
-(1, 'administrator', 'afilipov92@gmail.com', '$2y$11$vikGGMUCUPoVxlrKDvLWzOgfQySHY2gGs5jufwiBo.sa1tBeJF1oy', 3, '200ceb26807d6bf99fd6f4f0d1ca54d4'),
-(6, 'liluoz', 'liluoz@mail.ru', '$2y$11$sdBSYs14SvD5ZV4N2fcPb.BfaWwYNc8T2ioKGxbovcLprw7ZYvW4e', 3, '84c3b379c5dd996064098430b259c1c3');
+INSERT INTO `users` (`id`, `login`, `email`, `password`, `id_status`) VALUES
+(1, 'administrator', 'afilipov92@gmail.com', '$2y$11$vikGGMUCUPoVxlrKDvLWzOgfQySHY2gGs5jufwiBo.sa1tBeJF1oy', 1),
+(6, 'liluoz', 'liluoz@mail.ru', '$2y$11$sdBSYs14SvD5ZV4N2fcPb.BfaWwYNc8T2ioKGxbovcLprw7ZYvW4e', 2);
 
 
 ALTER TABLE `road_signs`

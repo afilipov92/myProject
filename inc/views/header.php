@@ -11,7 +11,8 @@
     <script src="<?= Controller::url('javascript', 'form.js'); ?>"></script>
     <script>
         window.URLS = {
-            MAP_POINTS: "<?= Controller::url('ajax', 'map') ?>"
+            MAP_POINTS: "<?= Controller::url('ajax', 'map') ?>",
+            LAST_POINT: "<?= Controller::url('ajax', 'lastpoint') ?>"
         }
     </script>
 </head>

@@ -59,7 +59,8 @@ class Controller {
      * @return bool
      */
     public function isAjax() {
-        return (isset($_GET['ajax']) || (isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest'));
+        $a = (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
+        return $a;
     }
 
     /**

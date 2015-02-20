@@ -6,7 +6,21 @@
     }
 
     function initialize() {
-        var myLatlng = new google.maps.LatLng(52.444287, 30.999960);
+        var lastPoint = {
+            latitude: 52.444287,
+            longitude: 30.999960
+        };
+        $(function () {
+            $.ajax({
+                url: window.URLS.LAST_POINT,
+                success: function (point) {
+                    lastPoint.latitude = point.latitude;
+                    lastPoint.longitude = point.longitude;
+                }
+            });
+        });
+
+        var myLatlng = new google.maps.LatLng(lastPoint.latitude, lastPoint.longitude);
         var mapOptions = {
             zoom: 16,
             minZoom: 14,
@@ -24,15 +38,9 @@
 
         //обработка загрузки знаков на карту
         $(function () {
-            /*$.get(window.URLS.MAP_POINTS, function(pointsArray) {
-             $.each(pointsArray, function(key,point) {
-             addSign(point);
-             });
-             });*/
             $.ajax({
                 url: window.URLS.MAP_POINTS,
                 success: function (pointsArray) {
-                    a = pointsArray;
                     $.each(pointsArray, function (key, point) {
                         addSign(point);
                     });
@@ -71,6 +79,7 @@
 
             google.maps.event.addListener(map, 'tilesloaded', function () {
                 rotateAngle(pointData.rotation, marker.title);
+                map.setCenter(new google.maps.LatLng(lastPoint.latitude, lastPoint.longitude));
             });
 
             updateMarkerPosition(marker.getPosition());

@@ -41,10 +41,6 @@ class RoadsignsController extends Controller {
         $marker = new MarkerModel();
         $this->view->markers = $marker->getListMarkers();
         $this->view->cat = $marker->categories;
-        if ($this->isAjax()) {
-            $this->view->displayPartial('roadsigns/form');
-        } else {
-            $this->view->display('roadsigns/map');
-        }
+        $this->view->display('roadsigns/map');
     }
 }

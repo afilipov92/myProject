@@ -1,7 +1,6 @@
-<div><?= $this->result ?></div>
-<p align="center"><b>Форма добавления знака</b></p>
-
-<form name="form4" class="form1" method="post">
+<form name="form4" id="form1" class="form1" method="post">
+    <p align="center"><b>Форма добавления знака</b></p>
+    <div><?= $this->result ?></div>
     <div>
         <input id="id" type="hidden" name="id" value="<?= $this->data->id ?>">
     </div>
