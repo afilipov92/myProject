@@ -65,13 +65,12 @@ class UserModel extends BaseModel {
      * @return bool
      */
     public function addUser() {
-        $ins = self::connect()->prepare('INSERT INTO users (login, email, password, id_status, hash) VALUES (:login, :email, :password, :id_status, :hash)');
+        $ins = self::connect()->prepare('INSERT INTO users (login, email, password, id_status) VALUES (:login, :email, :password, :id_status)');
         return $ins->execute(array(
             'login' => $this->login,
             'email' => $this->email,
             'password' => self::getHashPass($this->password),
-            'id_status' => ID_USER,
-            'hash' => md5($this->login)
+            'id_status' => ID_USER
         ));
     }
 

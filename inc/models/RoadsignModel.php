@@ -90,8 +90,4 @@ class RoadsignModel extends BaseModel {
     public static function  selectSigns() {
         return self::connect()->query('SELECT * FROM road_signs', PDO::FETCH_ASSOC)->fetchAll();
     }
-
-    public static function selectLastSign() {
-        return self::connect()->query('SELECT * FROM road_signs ORDER BY date DESC LIMIT 1')->fetch();
-    }
 }
