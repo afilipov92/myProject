@@ -1,6 +1,9 @@
 <?php
 
 class RoadsignsController extends Controller {
+    /**
+     * manipulation to add, edit, delete road signs
+     */
     public function indexAction() {
         if (!$this->session->isLoggedIn()) {
             $this->redirect(Controller::url('auth', 'login'));
@@ -10,22 +13,21 @@ class RoadsignsController extends Controller {
         if ($this->isPost()) {
             $newRoadSign->setAttributes($_POST);
             if ($newRoadSign->isFormVaild()) {
-                if($this->isEditPost()){
+                if ($this->isEditPost()) {
                     if ($newRoadSign->editRoadSign()) {
-                        $this->view->result = "Вы успешно обновили знак";
+                        $this->redirect(BASE_URL);
                     } else {
                         $this->view->result = "Ошибка обновления";
                     }
-                } else if($this->isDeletePost()) {
+                } else if ($this->isDeletePost()) {
                     if ($newRoadSign->deleteRoadSign()) {
-                        $this->view->result = "Вы успешно удалили знак";
+                        $this->redirect(BASE_URL);
                     } else {
                         $this->view->result = "Ошибка удаления знака";
                     }
-                }
-                else {
+                } else {
                     if ($newRoadSign->addRoadSign()) {
-                        $this->view->result = "Вы успешно добавили знак";
+                        $this->redirect(BASE_URL);
                     } else {
                         $this->view->result = "Ошибка сохранения";
                     }
@@ -39,7 +41,7 @@ class RoadsignsController extends Controller {
         $marker = new MarkerModel();
         $this->view->markers = $marker->getListMarkers();
         $this->view->cat = $marker->categories;
-        if($this->isAjax()){
+        if ($this->isAjax()) {
             $this->view->displayPartial('roadsigns/form');
         } else {
             $this->view->display('roadsigns/map');

@@ -32,6 +32,7 @@
             $.ajax({
                 url: window.URLS.MAP_POINTS,
                 success: function (pointsArray) {
+                    a = pointsArray;
                     $.each(pointsArray, function (key, point) {
                         addSign(point);
                     });
@@ -68,7 +69,7 @@
                 setMarker(marker);
             });
 
-            google.maps.event.addListener(map, 'click', function () {
+            google.maps.event.addListener(map, 'tilesloaded', function () {
                 rotateAngle(pointData.rotation, marker.title);
             });
 

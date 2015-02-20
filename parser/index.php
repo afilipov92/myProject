@@ -1,7 +1,7 @@
 <?php
 ini_set("max_execution_time", "1200");
 
-$folder =  "../images/road_signs/";
+$folder = "../images/road_signs/";
 $site = "http://ipdd.adrive.by/";
 $start_page = 1;
 $col_pages = 7;

@@ -9,8 +9,8 @@ class Captcha {
         $letters = 'ABCDEFGKIJKLMNOPQRSTUVWXYZ23456789';
         $caplen = 6;
         $captcha = '';
-        for ($i = 0; $i < $caplen; $i++){
-            $captcha .= $letters[ rand(0, strlen($letters)-1) ];
+        for ($i = 0; $i < $caplen; $i++) {
+            $captcha .= $letters[rand(0, strlen($letters) - 1)];
         }
         SessionModel::setCaptcha($captcha);
         return $captcha;

@@ -17,9 +17,9 @@ class RegistrationController extends Controller {
             $captcha = Captcha::isValidCaptcha($_POST['captcha']);
             if ($newUser->isFormVaild() AND $captcha) {
                 if ($newUser->addUser()) {
-                    $this->view->result = "Вы успешно зарегистрировались";
+                    $this->view->gbErrors['result'] = "Вы успешно зарегистрировались!";
                 } else {
-                    $this->view->result = "Ошиба регистрации";
+                    $this->view->gbErrors['result'] = "Ошиба регистрации";
                 }
             } else {
                 $this->view->gbErrors = $newUser->getErrors();

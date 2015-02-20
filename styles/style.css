@@ -19,7 +19,17 @@ html, body {
     position: absolute;
     z-index: 2;
     display: none;
-    width: 40%;
+    width: 35%;
+    height: 60%;
+    background: #ffffff;
+    padding-left: 10px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    overflow-y: auto;
+}
+#form-signs :last-child {
+    padding-bottom: 10px;
 }
 
 .extremum-slide {
@@ -62,6 +72,7 @@ html, body {
     min-height: 50px;
     margin-bottom: 0;
     border: 1px solid transparent;
+    box-shadow: 0 20px 30px rgba(0,0,0,0.5);
 }
 .navigation .navbar-nav > li > a {
     color: #ffffff;

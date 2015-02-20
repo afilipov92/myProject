@@ -23,10 +23,9 @@ class Controller {
     /**
      * Returns the URL for the parameters.
      * The number of parameters - at least one
-     * @param $controller
      * @return string - URL
      */
-    public static function url($controller) {
+    public static function url() {
         $args = func_get_args();
         return BASE_URL . implode("/", $args);
     }
@@ -39,19 +38,35 @@ class Controller {
         return !empty($_POST);
     }
 
+    /**
+     * check clicking the edit button
+     * @return bool
+     */
     public function isEditPost() {
         return isset($_POST['edit']);
     }
 
+    /**
+     * check clicking the delete button
+     * @return bool
+     */
     public function isDeletePost() {
         return isset($_POST['delete']);
     }
 
-    public function isAjax(){
+    /**
+     * check send Ajax request
+     * @return bool
+     */
+    public function isAjax() {
         return (isset($_GET['ajax']) || (isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest'));
     }
 
-    public function renderJson($data){
+    /**
+     * render of data in json
+     * @param $data
+     */
+    public function renderJson($data) {
         header('Content-Type: application/json');
         echo json_encode($data);
     }
@@ -60,8 +75,7 @@ class Controller {
      * Redirects the user to the address
      * @param $url
      */
-    public function redirect($url)
-    {
+    public function redirect($url) {
         header('Location: ' . $url);
         die;
     }

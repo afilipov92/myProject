@@ -4,7 +4,7 @@
         <input type="text" id="login" name="login" class="form-control" placeholder="Логин" required autofocus>
         <input type="password" id="password" name="password" class="form-control" placeholder="Пароль" required>
         <button class="btn btn-lg btn-primary btn-block">Войти</button>
-        <a href="<?php echo Controller::url('registration')?>">Регистрация</a>
+        <a href="<?php echo Controller::url('registration') ?>">Регистрация</a>
         <?php if ($this->msg) { ?>
             <div class="form-group">
                 <div class="alert alert-warning">

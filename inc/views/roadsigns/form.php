@@ -23,6 +23,7 @@
         <textarea id="info" name="info">
             <?= $this->data->info ?>
         </textarea>
+
         <p data-name="info"></p>
     </div>
 

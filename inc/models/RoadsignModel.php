@@ -1,6 +1,6 @@
 <?php
 
-class RoadsignModel extends BaseModel{
+class RoadsignModel extends BaseModel {
     public $id = "";
     public $latitude = "";
     public $longitude = "";
@@ -18,6 +18,7 @@ class RoadsignModel extends BaseModel{
         $this->date = date("Y-m-d H:i:s");
         $this->id_user = $id_user;
     }
+
     /**
      * checks the validity of the road_signs form
      * @return bool
@@ -53,6 +54,10 @@ class RoadsignModel extends BaseModel{
         ));
     }
 
+    /**
+     * edit information about road sign to the database
+     * @return bool
+     */
     public function editRoadSign() {
         $ins = self::connect()->prepare('UPDATE road_signs SET latitude=:latitude, longitude=:longitude, number=:number, rotation=:rotation, info=:info, date=:date, id_user=:id_user WHERE id=:id');
         return $ins->execute(array(
@@ -67,6 +72,10 @@ class RoadsignModel extends BaseModel{
         ));
     }
 
+    /**
+     * delete road signs from database
+     * @return bool
+     */
     public function deleteRoadSign() {
         $ins = self::connect()->prepare('DELETE FROM road_signs WHERE id=:id');
         return $ins->execute(array(
