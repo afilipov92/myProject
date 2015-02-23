@@ -56,16 +56,26 @@
                 draggable: true,
                 title: pointData.id
             });
+            var infowindow;
+            if (pointData.info != "") {
+                infowindow = new google.maps.InfoWindow(
+                    { content: pointData.info
+                    });
+            }
 
-            google.maps.event.addListener(marker, 'rightclick', function () {
+            google.maps.event.addListener(marker, 'click', function () {
+                infowindow.open(map, marker);
+            });
+
+            google.maps.event.addListener(marker, 'rightclick', function (event) {
                 $('#id').attr('value', pointData.id);
                 $('#number').attr('value', pointData.number);
                 $('#rotation').attr('value', pointData.rotation);
-                $('#latitude').attr('value', pointData.latitude);
-                $('#longitude').attr('value', pointData.longitude);
+                updateMarkerPosition(marker.getPosition());
                 $("#info").text(pointData.info);
                 $('#form-signs').show();
                 setMarker(marker);
+                map.panTo(marker.getPosition());
             });
 
             google.maps.event.addListener(map, 'tilesloaded', function () {
@@ -136,18 +146,20 @@
     //изменения вида маркера по выбранному знаку
     function setMarker(marker) {
         $('img').click(function () {
-            var id = $(this).attr('id');
-            $('#number').attr('value', id);
-            var folder = id.substr(0, 1);
-            var image = 'images/road_signs/' + folder + '/' + id + '.png' + '#id=' + marker.title;
-            var markerIcon = {
-                scaledSize: new google.maps.Size(40, 40),
-                size: new google.maps.Size(60, 60),
-                origin: new google.maps.Point(-15, -10),
-                anchor: new google.maps.Point(30, 30),
-                url: image
-            };
-            marker.setIcon(markerIcon);
+            if (marker.title == $('#id').attr('value')) {
+                var id = $(this).attr('id');
+                $('#number').attr('value', id);
+                var folder = id.substr(0, 1);
+                var image = 'images/road_signs/' + folder + '/' + id + '.png' + '#id=' + marker.title;
+                var markerIcon = {
+                    scaledSize: new google.maps.Size(40, 40),
+                    size: new google.maps.Size(60, 60),
+                    origin: new google.maps.Point(-15, -10),
+                    anchor: new google.maps.Point(30, 30),
+                    url: image
+                };
+                marker.setIcon(markerIcon);
+            }
         });
     }
 

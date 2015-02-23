@@ -22,7 +22,8 @@ class Router {
         if (method_exists($controller, $action)) {
             call_user_func_array(array($controller, $action), $actionParams);
         } else {
-            throw new Exception("Такой метод не существует");
+            $controller = new ErrorController();
+            $controller->notFoundAction();
         }
 
     }

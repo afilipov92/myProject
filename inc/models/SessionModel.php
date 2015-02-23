@@ -6,7 +6,11 @@ class SessionModel {
      * start session
      */
     public function __construct() {
-        session_start();
+        // Добавляем проверку, т.к. при ошибке у нас будет создаваться новый контроллер
+        // избегаем появления ошибки 'session already started'
+        if (session_id() == '') {
+            session_start();
+        }
     }
 
     /**
