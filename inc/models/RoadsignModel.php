@@ -54,6 +54,10 @@ class RoadsignModel extends BaseModel {
         ));
     }
 
+    public function getLastInsertId() {
+        return self::connect()->lastInsertId();
+    }
+
     /**
      * edit information about road sign to the database
      * @return bool
@@ -88,6 +92,6 @@ class RoadsignModel extends BaseModel {
      * @return array
      */
     public static function  selectSigns() {
-        return self::connect()->query('SELECT * FROM road_signs', PDO::FETCH_ASSOC)->fetchAll();
+        return self::connect()->query('SELECT * FROM road_signs ORDER BY date', PDO::FETCH_ASSOC)->fetchAll();
     }
 }

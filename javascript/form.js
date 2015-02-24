@@ -27,7 +27,6 @@ $(function () {
     });
 });
 
-
 $(function () {
     $('input[type=submit]').click(function () {
         $.ajax({

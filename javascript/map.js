@@ -34,6 +34,9 @@
                     $.each(pointsArray, function (key, point) {
                         addSign(point);
                     });
+                    var elem = pointsArray.pop();
+                    lastPoint.latitude = elem.latitude;
+                    lastPoint.longitude = elem.longitude;
                 }
             });
         });
@@ -107,6 +110,10 @@
         //спрятать форму по клику мыши
         google.maps.event.addListener(map, 'click', function () {
             $('#form-signs').hide();
+        });
+
+        google.maps.event.addListener(map, 'tilesloaded', function () {
+            map.panTo(new google.maps.LatLng(lastPoint.latitude, lastPoint.longitude));
         });
     }
 

@@ -15,23 +15,24 @@ class RoadsignsController extends Controller {
             if ($newRoadSign->isFormVaild()) {
                 if ($this->isEditPost()) {
                     if ($newRoadSign->editRoadSign()) {
-                        $this->redirect(BASE_URL);
+                        $this->view->result = "Знак обновлен";
                     } else {
                         $this->view->result = "Ошибка обновления";
                     }
                 } else if ($this->isDeletePost()) {
                     if ($newRoadSign->deleteRoadSign()) {
-                        $this->redirect(BASE_URL);
+                        $this->view->result = "Знак удален";
                     } else {
                         $this->view->result = "Ошибка удаления знака";
                     }
                 } else {
                     if ($newRoadSign->addRoadSign()) {
-                        $this->redirect(BASE_URL);
+                        $this->view->result = "Знак добавлен";
                     } else {
                         $this->view->result = "Ошибка сохранения";
                     }
                 }
+
             } else {
                 $this->view->gbErrors = $newRoadSign->getErrors();
             }
@@ -41,6 +42,10 @@ class RoadsignsController extends Controller {
         $marker = new MarkerModel();
         $this->view->markers = $marker->getListMarkers();
         $this->view->cat = $marker->categories;
-        $this->view->display('roadsigns/map');
+        if($this->isAjax()) {
+            $this->view->displayPartial('roadsigns/form');
+        } else {
+            $this->view->display('roadsigns/map');
+        }
     }
 }
