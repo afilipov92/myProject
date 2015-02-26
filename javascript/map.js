@@ -39,8 +39,7 @@
                     lastPoint.longitude = elem.longitude;
                 }
             });
-        });
-
+        })
         //отображение знаков из бд
         function addSign(pointData) {
             var folder = pointData.number.substr(0, 1);
@@ -94,6 +93,40 @@
             google.maps.event.addListener(marker, 'dragend', function () {
                 map.panTo(marker.getPosition());
             });
+
+            $(function () {
+                $('input[name=edit]').click(function (event) {
+                    var button = this.name;
+                    event.preventDefault();
+                    $.ajax({
+                        type: 'POST',
+                        url: window.location.href,
+                        data: $('#form1').serialize() + '&' + button + '=' + this.value,
+                        success: function (data) {
+                            alert('Знак обновлен');
+                        }
+                    });
+                });
+            });
+
+            $(function () {
+                $('input[name=delete]').click(function (event) {
+                    var button = this.name;
+                    event.preventDefault();
+                    $.ajax({
+                        type: 'POST',
+                        url: window.location.href,
+                        data: $('#form1').serialize() + '&' + button + '=' + this.value,
+                        success: function (data) {
+                            if (marker.title == data) {
+                                marker.setMap(null);
+                                alert('Знак удален');
+                            }
+                        }
+                    });
+                });
+            });
+
         }
 
         //отображение формы по клику правой кнопки мыши и установка маркера в этом месте
@@ -112,8 +145,27 @@
             $('#form-signs').hide();
         });
 
-        google.maps.event.addListener(map, 'tilesloaded', function () {
-            map.panTo(new google.maps.LatLng(lastPoint.latitude, lastPoint.longitude));
+        /*  google.maps.event.addListener(map, 'tilesloaded', function () {
+         map.panTo(new google.maps.LatLng(lastPoint.latitude, lastPoint.longitude));
+         });*/
+
+        $(function () {
+            $('input[name=submit]').click(function (event) {
+                var button = this.name;
+                event.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: window.location.href,
+                    data: $('#form1').serialize() + '&' + button + '=' + this.value,
+                    success: function (data) {
+                        addSign(data);
+                        placeMarker.marker.setMap(null);
+                        delete placeMarker.marker;
+                        $('#id').attr('value', data.id);
+                        setTimeout('alert("знак добавлен")', 1000);
+                    }
+                });
+            });
         });
     }
 
@@ -147,7 +199,6 @@
         google.maps.event.addListener(placeMarker.marker, 'click', function () {
             $('#form-signs').show();
         });
-
     }
 
     //изменения вида маркера по выбранному знаку
@@ -185,8 +236,8 @@ document.onkeydown = function checkKeycode(event) {
         rotateAngle(angle, $('#id').attr('value'));
         ob.attr('value', angle);
     }
-}
-
+};
+//img[src$="?angle=20"]
 function rotateAngle(angle, id) {
     var rotate = "rotate(" + angle + "deg)";
     var a = "img[src$='id=" + id + "']";

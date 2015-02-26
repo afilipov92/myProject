@@ -1,10 +1,11 @@
 <?php
+
 class ErrorController extends Controller {
-    public function notFoundAction(){
+    public function notFoundAction() {
         $this->view->display('error/page-not-found');
     }
 
-    public function classNotFoundAction(){
+    public function classNotFoundAction() {
         $this->view->display('error/class-not-found');
     }
 }

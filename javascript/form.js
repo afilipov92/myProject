@@ -26,16 +26,3 @@ $(function () {
         })
     });
 });
-
-$(function () {
-    $('input[type=submit]').click(function () {
-        $.ajax({
-            type: 'POST',
-            url: window.location.href,
-            data: $('#form1').serialize() + '&' + this.name + '=' + this.value + '1',
-            success: function (data) {
-                alert("GOOD");
-            }
-        });
-    });
-});

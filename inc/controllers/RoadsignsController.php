@@ -10,24 +10,28 @@ class RoadsignsController extends Controller {
         }
         $newRoadSign = new RoadsignModel($this->session->getId());
         $this->view->result = "";
+        $data = "";
         if ($this->isPost()) {
             $newRoadSign->setAttributes($_POST);
             if ($newRoadSign->isFormVaild()) {
                 if ($this->isEditPost()) {
                     if ($newRoadSign->editRoadSign()) {
-                        $this->view->result = "Знак обновлен";
+                        $this->redirect($this->url(DEFAULT_CONTROLLER));
                     } else {
                         $this->view->result = "Ошибка обновления";
                     }
                 } else if ($this->isDeletePost()) {
                     if ($newRoadSign->deleteRoadSign()) {
-                        $this->view->result = "Знак удален";
+                        $data = $newRoadSign->id;
+                        // $this->redirect($this->url(DEFAULT_CONTROLLER));
                     } else {
                         $this->view->result = "Ошибка удаления знака";
                     }
                 } else {
                     if ($newRoadSign->addRoadSign()) {
-                        $this->view->result = "Знак добавлен";
+                        $newRoadSign->id = $newRoadSign->getLastInsertId();
+                        $data = $newRoadSign;
+                        //     $this->redirect($this->url(DEFAULT_CONTROLLER));
                     } else {
                         $this->view->result = "Ошибка сохранения";
                     }
@@ -42,8 +46,8 @@ class RoadsignsController extends Controller {
         $marker = new MarkerModel();
         $this->view->markers = $marker->getListMarkers();
         $this->view->cat = $marker->categories;
-        if($this->isAjax()) {
-            $this->view->displayPartial('roadsigns/form');
+        if ($this->isAjax()) {
+            $this->renderJson($data);
         } else {
             $this->view->display('roadsigns/map');
         }
