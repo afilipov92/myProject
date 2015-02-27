@@ -94,7 +94,7 @@
                 map.panTo(marker.getPosition());
             });
 
-            $(function () {
+          $(function () {
                 $('input[name=edit]').click(function (event) {
                     var button = this.name;
                     event.preventDefault();
@@ -103,7 +103,12 @@
                         url: window.location.href,
                         data: $('#form1').serialize() + '&' + button + '=' + this.value,
                         success: function (data) {
-                            alert('Знак обновлен');
+                            if(marker.title == data.id){
+                                delete marker.title;
+                                marker.setMap(null);
+                                addSign(data);
+                                setTimeout('alert("Знак обновлен")', 500);
+                            }
                         }
                     });
                 });
@@ -119,6 +124,7 @@
                         data: $('#form1').serialize() + '&' + button + '=' + this.value,
                         success: function (data) {
                             if (marker.title == data) {
+                                delete marker.title;
                                 marker.setMap(null);
                                 alert('Знак удален');
                             }
@@ -162,7 +168,7 @@
                         placeMarker.marker.setMap(null);
                         delete placeMarker.marker;
                         $('#id').attr('value', data.id);
-                        setTimeout('alert("знак добавлен")', 1000);
+                        setTimeout('alert("Знак добавлен")', 500);
                     }
                 });
             });
@@ -222,24 +228,24 @@
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
-})();
 
-document.onkeydown = function checkKeycode(event) {
-    var ob = $('#rotation');
-    var angle;
-    if (event.which == 67) {
-        angle = parseInt(ob.attr('value')) + 10;
-    } else if (event.which == 90) {
-        angle = parseInt(ob.attr('value')) - 10;
-    }
-    if (event.which == 90 || event.which == 67) {
-        rotateAngle(angle, $('#id').attr('value'));
-        ob.attr('value', angle);
-    }
-};
+    document.onkeydown = function checkKeycode(event) {
+        var ob = $('#rotation');
+        var angle;
+        if (event.which == 67) {
+            angle = parseInt(ob.attr('value')) + 10;
+        } else if (event.which == 90) {
+            angle = parseInt(ob.attr('value')) - 10;
+        }
+        if (event.which == 90 || event.which == 67) {
+            rotateAngle(angle, $('#id').attr('value'));
+            ob.attr('value', angle);
+        }
+    };
 //img[src$="?angle=20"]
-function rotateAngle(angle, id) {
-    var rotate = "rotate(" + angle + "deg)";
-    var a = "img[src$='id=" + id + "']";
-    $(a).css('transform', rotate);
-}
+    function rotateAngle(angle, id) {
+        var rotate = "rotate(" + angle + "deg)";
+        var a = "img[src$='id=" + id + "']";
+        $(a).css('transform', rotate);
+    }
+})();

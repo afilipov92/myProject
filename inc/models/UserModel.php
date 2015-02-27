@@ -42,7 +42,7 @@ class UserModel extends BaseModel {
      * @return mixed
      */
     public static function findBy(array $condition) {
-        $query = "SELECT * FROM users";
+        $query = "SELECT * FROM gai_users";
         if (!empty($condition)) {
             $query .= " WHERE ";
             $whereCondition = array();
@@ -65,7 +65,7 @@ class UserModel extends BaseModel {
      * @return bool
      */
     public function addUser() {
-        $ins = self::connect()->prepare('INSERT INTO users (login, email, password, id_status) VALUES (:login, :email, :password, :id_status)');
+        $ins = self::connect()->prepare('INSERT INTO gai_users (login, email, password, id_status) VALUES (:login, :email, :password, :id_status)');
         return $ins->execute(array(
             'login' => $this->login,
             'email' => $this->email,

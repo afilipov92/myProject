@@ -53,7 +53,9 @@ spl_autoload_register(function ($class) {
     }
 });
 
-// Последний лоадер добавлен, чтобы перехватывать Fatal error при ненайденом классе
+/**
+ * Fatal Error intercepts, when class not found
+ */
 spl_autoload_register(function ($class) {
     $controller = new ErrorController();
     $controller->classNotFoundAction($class);

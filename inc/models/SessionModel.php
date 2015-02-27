@@ -6,8 +6,8 @@ class SessionModel {
      * start session
      */
     public function __construct() {
-        // Добавляем проверку, т.к. при ошибке у нас будет создаваться новый контроллер
-        // избегаем появления ошибки 'session already started'
+        // Add a check, because on error, we will create a new controller
+        // avoid the occurrence of errors 'session already started'
         if (session_id() == '') {
             session_start();
         }
@@ -54,6 +54,14 @@ class SessionModel {
     }
 
     /**
+     * returns the id of the user if he's logged
+     * @return string
+     */
+    public function getIdStatus() {
+        return $this->isLoggedIn() ? $_SESSION['idStatus'] : '';
+    }
+
+    /**
      * attempt to login on the data from the form.
      * returns the result of an attempt
      * @param $login
@@ -66,8 +74,17 @@ class SessionModel {
         if ($res && $resPass) {
             $_SESSION['id'] = $res['id'];
             $_SESSION['login'] = $res['login'];
+            $_SESSION['idStatus'] = $res['id_status'];
         }
         return (bool)$res && (bool)$resPass;
+    }
+
+    /**
+     * returns the id_status of the user if he's logged
+     * @return string
+     */
+    public function isAccess() {
+        return $this->isLoggedIn() ? $_SESSION['id'] : '';
     }
 
     /**

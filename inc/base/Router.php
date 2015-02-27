@@ -3,7 +3,6 @@
 class Router {
     /**
      * Selects the controller, the controller method, passes parameters
-     * @TODO добавить классы исключений
      */
     public static function run() {
         $url = isset($_GET['url']) ? trim($_GET['url']) : DEFAULT_CONTROLLER;
